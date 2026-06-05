@@ -1,0 +1,32 @@
+# ── Violence Detection — Configuration ──────────────────────────
+# All hyperparameters live here. Never hardcode paths in the notebook.
+
+data:
+  dataset_path: "dataset/"          # update this to your local path
+  classes:
+    - "NonViolence"
+    - "Violence"
+  test_size: 0.2
+  random_state: 42
+
+model:
+  img_size: 64                      # frame resize (64x64 pixels)
+  sequence_length: 8                # frames sampled per video
+  lstm_units: 64
+  dropout_lstm: 0.5
+  dropout_dense: 0.3
+  dense_units: 32
+
+training:
+  epochs: 30
+  batch_size: 4
+  learning_rate: 0.0003
+  early_stopping_patience: 5
+  reduce_lr_patience: 3
+  reduce_lr_factor: 0.3
+  min_lr: 0.000001
+
+paths:
+  best_model: "violence_detection_model.h5"
+  training_curves: "results/training_curves.png"
+  confusion_matrix: "results/confusion_matrix.png"
